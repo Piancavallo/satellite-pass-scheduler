@@ -138,6 +138,7 @@ MAILERS = {
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
+    'https://satellite-pass-scheduler.netlify.app',
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'

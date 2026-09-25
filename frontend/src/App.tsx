@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
+const API_BASE_URL = 'https://satellite-pass-scheduler.onrender.com'
+
 type Satellite = {
   id: number
   name: string
@@ -37,15 +39,15 @@ function App() {
   const [endTime, setEndTime] = useState('')
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/satellites/')
+    fetch(`${API_BASE_URL}/api/satellites/`)
       .then(response => response.json())
       .then(data => setSatellites(data))
 
-    fetch('http://127.0.0.1:8000/api/communication-windows/')
+    fetch(`${API_BASE_URL}/api/communication-windows/`)
       .then(response => response.json())
       .then(data => setWindows(data))
 
-    fetch('http://127.0.0.1:8000/api/ground-stations/')
+    fetch(`${API_BASE_URL}/api/ground-stations/`)
       .then(response => response.json())
       .then(data => setGroundStations(data))
   }, [])
@@ -61,7 +63,7 @@ function App() {
       return
     }
 
-    fetch('http://127.0.0.1:8000/api/communication-windows/', {
+    fetch(`${API_BASE_URL}/api/communication-windows/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +78,7 @@ function App() {
     })
       .then(response => response.json())
       .then(() => {
-        fetch('http://127.0.0.1:8000/api/communication-windows/')
+        fetch(`${API_BASE_URL}/api/communication-windows/`)
           .then(response => response.json())
           .then(data => setWindows(data))
       })
@@ -86,8 +88,8 @@ function App() {
     if (!window.confirm('Are you sure you want to delete this pass?')) {
       return
     }
-  
-    fetch(`http://127.0.0.1:8000/api/communication-windows/${id}/`, {
+
+    fetch(`${API_BASE_URL}/api/communication-windows/${id}/`, {
       method: 'DELETE',
     })
       .then(() => {
@@ -136,9 +138,10 @@ function App() {
               <p>Start: {window.start_time}</p>
               <p>End: {window.end_time}</p>
               <p>Status: {window.status}</p>
+
               <button onClick={() => deletePass(window.id)}>
-  Delete
-</button>
+                Delete
+              </button>
             </div>
           ))}
         </div>
@@ -153,6 +156,7 @@ function App() {
             onChange={e => setSelectedSatellite(e.target.value)}
           >
             <option value="">Select Satellite</option>
+
             {satellites.map(satellite => (
               <option key={satellite.id} value={satellite.id}>
                 {satellite.name}
@@ -165,6 +169,7 @@ function App() {
             onChange={e => setSelectedGroundStation(e.target.value)}
           >
             <option value="">Select Ground Station</option>
+
             {groundStations.map(station => (
               <option key={station.id} value={station.id}>
                 {station.name}

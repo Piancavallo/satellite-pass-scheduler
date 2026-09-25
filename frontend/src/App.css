@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #050b14 url('./assets/space-background.jpg') center center / cover fixed;
+  color: #e5e7eb;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 8, 18, 0.72);
+  z-index: -1;
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 50px 24px;
+}
+
+header {
+  margin-bottom: 50px;
+}
+
+header h1 {
+  margin: 0 0 8px;
+  font-size: 42px;
+  letter-spacing: 1px;
+}
+
+header p {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 16px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h2 {
+  margin-bottom: 16px;
+  font-size: 24px;
+}
+
+.cards,
+.windows {
+  display: grid;
+  gap: 16px;
+}
+
+.card,
+.window {
+  background: rgba(10, 18, 32, 0.9);
+  border: 1px solid #26364d;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.card h3,
+.window h3 {
+  margin-top: 0;
+  color: #f3f4f6;
+}
+
+.card p,
+.window p {
+  margin: 8px 0;
+  color: #b8c1cc;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  background: rgba(10, 18, 32, 0.9);
+  border: 1px solid #26364d;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+select,
+input,
+button {
+  font: inherit;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #3a4b63;
+}
+
+select,
+input {
+  background: #111c2d;
+  color: #e5e7eb;
+}
+
+button {
+  cursor: pointer;
+  background: #1f2937;
+  color: white;
+}
+
+button:hover {
+  background: #374151;
+}
+
+@media (max-width: 700px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  header h1 {
+    font-size: 32px;
+  }
+}
